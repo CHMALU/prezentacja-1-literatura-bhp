@@ -441,6 +441,19 @@ def render(meta: dict, found: dict[str, list[str]]) -> None:
             summary.append((star, brief, link))
         lines.append("")
 
+    ieee = sorted(((notes[doi][1], authors(rec["csl"]), year(rec["csl"]), rec["csl"].get("title", ""), doi)
+                   for doi, rec in meta.items()
+                   if PWR.get(rec["csl"].get("publisher")) == "IEEE" and not found.get(doi)),
+                  key=lambda x: (-x[0], x[1]))
+    ieee_lines = [
+        f"## Do pobrania z IEEE ({len(ieee)}) — tak samo jak Ananthanarayanan 2017", "",
+        "Poprawnie pobrany plik nazywa się jak tytuł z podkreślnikami (np. "
+        "`Real-Time_Video_Analytics_The_Killer_App_for_Edge_Computing.pdf`) i ma więcej niż 1 stronę. "
+        "Potem `python3 literatura.py` sam go przeniesie i odhaczy.", "",
+        *[f"- [ ] {'★ ' if st else ''}{a} ({y}). *{html.unescape(t)}* — "
+          f"[IEEE Xplore](https://doi.org/{urllib.parse.quote(d, safe='/')})" for st, a, y, t, d in ieee],
+        "", "---", "",
+    ] if ieee else []
     have = [s for s in summary if s[2].startswith("✓")]
     miss_core = [s for s in summary if s[0] and not s[2].startswith("✓")]
     rest = [s for s in summary if not s[0] and not s[2].startswith("✓")]
@@ -478,7 +491,7 @@ abstrakt jest tylko u wydawcy). Plik generuje `literatura.py`, więc zmiany wpro
 - BibTeX wszystkich pozycji: `bibliografia.bib`.
 
 """
-    OUT.write_text(header + TOP + "\n".join(status + lines), encoding="utf-8")
+    OUT.write_text(header + "\n".join(ieee_lines) + TOP + "\n".join(status + lines), encoding="utf-8")
     print(f"{OUT.relative_to(ROOT)}: masz {len(have)}/{len(summary)}, rdzeń {core_total - len(miss_core)}/{core_total}")
 
 
