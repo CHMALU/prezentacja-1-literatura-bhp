@@ -1,10 +1,12 @@
 # Plan wystąpienia (Prezentacja I, 15 min + 5 min dyskusji)
 
-Prezentacja: https://claude.ai/artifact/7fezmZZugbnat7s5USqZS8 (pobierasz jako .pptx albo PDF; źródło slajdów
-w `prezentacja/`). Przy każdym slajdzie są też notatki prelegenta z tym samym tekstem co tutaj.
+Prezentacja: `prezentacja/prezentacja_1_wykrywanie_naruszen_BHP.pptx` (z czcionkami Space Grotesk i IBM Plex Sans,
+trzeba je zainstalować) albo `..._Arial.pptx` (działa wszędzie). Wersja online:
+https://claude.ai/artifact/7fezmZZugbnat7s5USqZS8. Przy każdym slajdzie są notatki prelegenta z tym samym tekstem co tutaj.
 
 ## Przed wystąpieniem
 
+- [ ] Wybierz plik: wersja z czcionkami (najpierw zainstaluj Space Grotesk i IBM Plex Sans z Google Fonts) albo Arial.
 - [ ] Uzupełnij na slajdach 1 i 12: **[Imię Nazwisko]**, **[promotor]**, **[e-mail]**.
 - [ ] Przejrzyj slajdy 3, 7, 9 i 10 (cel, koncepcja, dane, zadania) i popraw wszystko, co planujesz inaczej:
       o to będą pytać najdokładniej. Szczególnie: skąd będą nagrania i na jakim komputerze to liczysz.

@@ -3,8 +3,14 @@
 Temat: „System automatycznego wykrywania naruszeń BHP w czasie rzeczywistym” (seminarium dyplomowe
 prof. Świątka, Prezentacja I, 2026-10-12).
 
-- **Prezentacja (12 slajdów, 15 min):** https://claude.ai/artifact/7fezmZZugbnat7s5USqZS8 — do pobrania jako
-  .pptx albo PDF. Źródło slajdów (HTML + notatki prelegenta) w `prezentacja/`.
+- **Prezentacja (12 slajdów, 15 min), PowerPoint w `prezentacja/`:**
+  - `prezentacja_1_wykrywanie_naruszen_BHP.pptx`: z docelowymi czcionkami (Space Grotesk + IBM Plex Sans).
+    Zainstaluj je najpierw (darmowe: [Space Grotesk](https://fonts.google.com/specimen/Space+Grotesk),
+    [IBM Plex Sans](https://fonts.google.com/specimen/IBM+Plex+Sans)), inaczej PowerPoint podstawi inne.
+  - `prezentacja_1_wykrywanie_naruszen_BHP_Arial.pptx`: ta sama prezentacja na Arialu, wygląda tak samo na każdym komputerze.
+  - Wersja online: https://claude.ai/artifact/7fezmZZugbnat7s5USqZS8; źródło slajdów (HTML + notatki prelegenta)
+    w `prezentacja/slides/`. Notatki prelegenta są też w plikach .pptx.
+  - Po wystąpieniu plik wysyła się na jerzy.swiatek@pwr.edu.pl jako `imię_nazwisko_prezentacja_1`.
 - **[plan-wystapienia.md](plan-wystapienia.md)**: co uzupełnić przed wystąpieniem, przebieg z czasem na każdy slajd
   i ściąga na pytania z dyskusji (z odpowiedziami opartymi na źródłach).
 - **[literatura.md](literatura.md)**: lista do klikania, przy każdej pozycji link „gdzie pobrać” i „co z niej
