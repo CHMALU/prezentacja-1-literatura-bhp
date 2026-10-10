@@ -1,9 +1,9 @@
 # Literatura do Prezentacji I — „System automatycznego wykrywania naruszeń BHP w czasie rzeczywistym”
 
-22 pozycji, z czego 12 oznaczonych ★ to rdzeń na slajd „Istniejące rozwiązania” (cel: 8–12
-pozycji). Reszta to zapas na pytania z dyskusji albo na później do pracy. Wszystkie pozycje sprawdzone:
-metadane z rejestru DOI, treść z abstraktu (przy Nath i in. 2020 wyniki z repozytorium autorów, bo
-abstrakt jest tylko u wydawcy). Plik generuje `literatura.py`, więc zmiany wprowadzać w skrypcie.
+23 pozycji, z czego 13 oznaczonych ★ to rdzeń na slajdy (motywacja, istniejące rozwiązania,
+podstawy metod). Reszta to zapas na pytania z dyskusji albo na później do pracy. Wszystkie pozycje sprawdzone:
+metadane z rejestru DOI, treść z abstraktu, a 5 prac z tabeli na slajdzie (Fang 2018, Nath 2020, Wang 2021,
+Gallo 2022, Al-Azani 2024) także w pełnym tekście. Plik generuje `literatura.py`, więc zmiany wprowadzać w skrypcie.
 
 - **Wyszukiwanie (2026-10-10):** OpenAlex (tytuł + abstrakt, sortowanie po cytowaniach), osobno dla czterech
   wątków tematu, plus weryfikacja po tytule klasyków.
@@ -22,7 +22,7 @@ abstrakt jest tylko u wydawcy). Plik generuje `literatura.py`, więc zmiany wpro
 
 ## Stan pobrania (odświeżone 2026-10-10)
 
-**Masz 13 z 22 pozycji, z rdzenia ★ 12 z 12.** Rdzeń kompletny.
+**Masz 14 z 23 pozycji, z rdzenia ★ 13 z 13.** Rdzeń kompletny.
 
 ### Brakuje z zapasu (9) — niepilne, przydadzą się do pracy
 
@@ -38,8 +38,9 @@ Pozycje z IEEE pobierać tak samo jak Ananthanarayanan 2017: poprawny plik nazyw
 - [ ] Wojke N., Bewley A., Paulus D. (2017). *Simple online and realtime tracking with a deep association metric* — [arXiv, otwarty](https://arxiv.org/abs/1703.07402) · [IEEE, przez PWr](https://doi.org/10.1109/icip.2017.8296962) · [Scholar](https://scholar.google.com/scholar?q=%22Simple%20online%20and%20realtime%20tracking%20with%20a%20deep%20association%20metric%22)
 - [ ] Paleyes A., Urma R.G., Lawrence N.D. (2023). *Challenges in Deploying Machine Learning: A Survey of Case Studies* — [ACM, otwarty](https://doi.org/10.1145/3533378) · [Scholar](https://scholar.google.com/scholar?q=%22Challenges%20in%20Deploying%20Machine%20Learning%3A%20A%20Survey%20of%20Case%20Studies%22)
 
-### Masz już (13)
+### Masz już (14)
 
+- [x] ★ Główny Urząd Statystyczny (2025). *Wypadki przy pracy w 2024 r.* — `GUS 2025 - Wypadki przy pracy w 2024 r.pdf`
 - [x] ★ Fang Q., Li H., Luo X. i in. (2018). *Detecting non-hardhat-use by a deep learning method from far-field surveillance videos* — `Fang 2018 - Detecting non-hardhat-use by a deep learning method from far-field surveillance videos.pdf`
 - [x] ★ Nath N.D., Behzadan A.H., Paal S.G. (2020). *Deep learning for site safety: Real-time detection of personal protective equipment* — `Nath 2020 - Deep learning for site safety - Real-time detection of personal protective equipment.pdf`
 - [x] ★ Wang Z., Wu Y., Yang L. i in. (2021). *Fast Personal Protective Equipment Detection for Real Construction Sites Using Deep Learni* — `Wang 2021 - Fast Personal Protective Equipment Detection for Real Construction Sites Using Deep Learning Approaches.pdf`
@@ -61,9 +62,9 @@ Pozycje z IEEE pobierać tak samo jak Ananthanarayanan 2017: poprawny plik nazyw
 1. **Nath i in. (2020)**: robi prawie to samo zadanie (kask + kamizelka, YOLO, czas rzeczywisty), więc to
    główny punkt odniesienia. Warianty „detekcja elementów + reguła” i „klasa pracownika od razu” to gotowy
    materiał na pytanie z dyskusji „jak klasyfikujesz naruszenie?”.
-2. **Al-Azani i in. (2024)**: system na nagraniach z kamer monitoringu, od danych po wdrożenie. Spadek mAP
-   z 92% do 67% na nagraniu z innego miejsca i pod innym kątem uzasadnia, czemu praca uczy model na
-   nagraniach z własnego placu.
+2. **Al-Azani i in. (2024)**: najbliższy architekturze system (kilka kamer CCTV, silnik na GPU, 30 FPS,
+   dashboard). Spadek mAP z 92% do 67% na innej kamerze w innym środowisku uzasadnia, czemu praca uczy
+   model na nagraniach z własnego placu.
 3. **Gallo i in. (2022)**: system czasu rzeczywistego na strumieniu z kamery (wariant brzegowy). Dobrze
    pokazuje, czym różni się architektura kolegi: kilka kamer RTSP, jeden komputer, kolejka strumieni i GUI.
 4. **Redmon i in. (2016)** albo przegląd **Terven i in. (2023)**: podstawa metody, czyli dlaczego YOLO.
@@ -71,14 +72,20 @@ Pozycje z IEEE pobierać tak samo jak Ananthanarayanan 2017: poprawny plik nazyw
 Fang i in. (2018) warto mieć na slajdzie jako klasyk dziedziny, a Sculley i in. (2015) albo Kreuzberger
 i in. (2023) jako jedno zdanie o aspekcie inżynierskim. Szkic slajdu: `slajd-istniejace-rozwiazania.md`.
 
+## Motywacja: wypadki przy pracy w budownictwie (slajd „Motywacja”)
+
+| | Pozycja | Cytowania | Gdzie pobrać | Po co / co z niej wynika |
+|---|---|---|---|---|
+| ★ | Główny Urząd Statystyczny (2025). *Wypadki przy pracy w 2024 r.* GUS, Warszawa (publikacja z 27.11.2025). | — | ✓ pobrane (`GUS 2025 - Wypadki przy pracy w 2024 r.pdf`) | budownictwo w 2024 r.: 3442 z 67 000 poszkodowanych (5%), ale 59 z 250 ofiar śmiertelnych (24%) — tabl. 2; robotnicy budowlani to najczęstsza grupa wśród ofiar śmiertelnych (19,6%); „nieużywanie lub używanie w nieprawidłowy sposób sprzętu ochronnego” zgłoszono jako przyczynę 2311 razy — tabl. 19 |
+
 ## Detekcja kasków i kamizelek (PPE) — najbliższe tematowi (wątek 2)
 
 | | Pozycja | Cytowania | Gdzie pobrać | Po co / co z niej wynika |
 |---|---|---|---|---|
-| ★ | Fang Q., Li H., Luo X. i in. (2018). Detecting non-hardhat-use by a deep learning method from far-field surveillance videos. *Automation in Construction* 85, 1-9. | 560 | ✓ pobrane (`Fang 2018 - Detecting non-hardhat-use by a deep learning method from far-field surveillance videos.pdf`) | klasyk dziedziny: Faster R-CNN wykrywa brak kasku na nagraniach z kamer monitoringu z dużej odległości (ponad 100 tys. klatek z 25 budów) |
-| ★ | Nath N.D., Behzadan A.H., Paal S.G. (2020). Deep learning for site safety: Real-time detection of personal protective equipment. *Automation in Construction* 112, 103085. | 540 | ✓ pobrane (`Nath 2020 - Deep learning for site safety - Real-time detection of personal protective equipment.pdf`) | **najbliższe tematowi:** kask + kamizelka w czasie rzeczywistym (YOLOv3), trzy warianty: detekcja elementów + klasyfikator albo od razu klasa pracownika (bez kasku i kamizelki / tylko kask / tylko kamizelka / oba); mAP 72–86% wg repozytorium autorów, zbiór Pictor-v3 i kod otwarte |
-| ★ | Wang Z., Wu Y., Yang L. i in. (2021). Fast Personal Protective Equipment Detection for Real Construction Sites Using Deep Learning Approaches. *Sensors* 21(10), 3478. | 254 | ✓ pobrane (`Wang 2021 - Fast Personal Protective Equipment Detection for Real Construction Sites Using Deep Learning Approaches.pdf`) | osiem wariantów YOLO (v3–v5) na otwartym zbiorze CHV (kaski w 4 kolorach, osoba, kamizelka): YOLOv5x mAP 86,55%, YOLOv5s 52 FPS na GPU — gotowy zbiór na start i punkt odniesienia dla wyników |
-| ★ | Al-Azani S., Luqman H., Alfarraj M. i in. (2024). Real-Time Monitoring of Personal Protective Equipment Compliance in Surveillance Cameras. *IEEE Access* 12, 121882-121895. | 25 | ✓ pobrane (`Al-Azani 2024 - Real-Time Monitoring of Personal Protective Equipment Compliance in Surveillance Cameras.pdf`) | system PPE na nagraniach z kamer monitoringu, od zbierania danych po wdrożenie (YOLOv7, CenterNet, ViT); mAP spada z 92,4% do 66,7% na nagraniu z innego miejsca i pod innym kątem — argument za uczeniem na własnych nagraniach z placu |
+| ★ | Fang Q., Li H., Luo X. i in. (2018). Detecting non-hardhat-use by a deep learning method from far-field surveillance videos. *Automation in Construction* 85, 1-9. | 560 | ✓ pobrane (`Fang 2018 - Detecting non-hardhat-use by a deep learning method from far-field surveillance videos.pdf`) | klasyk dziedziny: Faster R-CNN wykrywa brak kasku na nagraniach z kamer monitoringu z dużej odległości (ponad 100 tys. klatek z 25 budów): precision 95,7%, recall 94,9%, ok. 0,2 s na klatkę; tylko kask; integrację z systemem monitoringu w czasie rzeczywistym autorzy zostawiają na dalsze prace |
+| ★ | Nath N.D., Behzadan A.H., Paal S.G. (2020). Deep learning for site safety: Real-time detection of personal protective equipment. *Automation in Construction* 112, 103085. | 540 | ✓ pobrane (`Nath 2020 - Deep learning for site safety - Real-time detection of personal protective equipment.pdf`) | **najbliższe tematowi:** kask + kamizelka w czasie rzeczywistym (YOLOv3), trzy warianty klasyfikacji pracownika (bez kasku i kamizelki / tylko kask / tylko kamizelka / oba); najlepszy (od razu klasa pracownika) 72,3% mAP przy 11 FPS na laptopie, najszybszy (detekcja elementów + klasyfikator) 63,1% przy 13 FPS; zbiór Pictor-v3 (ok. 1500 zdjęć z crowdsourcingu i internetu) i modele otwarte |
+| ★ | Wang Z., Wu Y., Yang L. i in. (2021). Fast Personal Protective Equipment Detection for Real Construction Sites Using Deep Learning Approaches. *Sensors* 21(10), 3478. | 254 | ✓ pobrane (`Wang 2021 - Fast Personal Protective Equipment Detection for Real Construction Sites Using Deep Learning Approaches.pdf`) | osiem wariantów YOLO (v3–v5) na otwartym zbiorze CHV (1330 zdjęć z budów; kaski w 4 kolorach, osoba, kamizelka): YOLOv5x mAP 86,55%, YOLOv5s 52 FPS na GPU; typowe błędy: zielona koszulka brana za kamizelkę, małe postacie z daleka — gotowy zbiór na start i punkt odniesienia dla wyników |
+| ★ | Al-Azani S., Luqman H., Alfarraj M. i in. (2024). Real-Time Monitoring of Personal Protective Equipment Compliance in Surveillance Cameras. *IEEE Access* 12, 121882-121895. | 25 | ✓ pobrane (`Al-Azani 2024 - Real-Time Monitoring of Personal Protective Equipment Compliance in Surveillance Cameras.pdf`) | **najbliższy architekturze:** system PPE na nagraniach z kamer CCTV (386 tys. klatek), wielowątkowy silnik na GPU (TensorRT) obsługuje kilka źródeł przy 30 FPS, wyniki na dashboardzie; YOLOv7 lepszy od CenterNet i transformera; mAP 92,4% na kamerze znanej z treningu, ale 66,7% na innej kamerze w innym środowisku — argument za uczeniem na własnych nagraniach z placu |
 |  | Wu J., Cai N., Chen W. i in. (2019). Automatic detection of hardhats worn by construction personnel: A deep learning approach and benchmark dataset. *Automation in Construction* 106, 102894. | 298 | [Elsevier, przez PWr](https://doi.org/10.1016/j.autcon.2019.102894) · [Scholar](https://scholar.google.com/scholar?q=%22Automatic%20detection%20of%20hardhats%20worn%20by%20construction%20personnel%3A%20A%20deep%20learning%20approach%20and%20benchmark%20dataset%22) | otwarty zbiór GDUT-HWD (3174 zdjęcia, kaski z kolorami), SSD z mechanizmem uwagi, mAP 83,89% |
 |  | Xiong R., Tang P. (2021). Pose guided anchoring for detecting proper use of personal protective equipment. *Automation in Construction* 130, 103828. | 87 | [Elsevier, otwarty](https://doi.org/10.1016/j.autcon.2021.103828) · [Scholar](https://scholar.google.com/scholar?q=%22Pose%20guided%20anchoring%20for%20detecting%20proper%20use%20of%20personal%20protective%20equipment%22) | pose estimation sprawdza, czy kask i kamizelka są noszone, a nie tylko widoczne w kadrze; F1 0,97 i 0,95 na zbiorze autorów (wynik na własnych danych — traktować ostrożnie) |
 |  | Wang S. (2025). Automated non-PPE detection on construction sites using YOLOv10 and transformer architectures for surveillance and body worn cameras with benchmark datasets. *Scientific Reports* 15(1). | 45 | [Springer, otwarty](https://doi.org/10.1038/s41598-025-12468-8) · [Scholar](https://scholar.google.com/scholar?q=%22Automated%20non-PPE%20detection%20on%20construction%20sites%20using%20YOLOv10%20and%20transformer%20architectures%20for%20surveillance%20and%20body%20worn%20cameras%20with%20benchmark%20datasets%22) | najnowsze wyniki: YOLOv10 z backbone Swin Transformer na nagraniach z monitoringu i kamer nasobnych; AP50 brak kasku 92,4%, brak kamizelki 87,2% |
@@ -90,7 +97,7 @@ i in. (2023) jako jedno zdanie o aspekcie inżynierskim. Szkic slajdu: `slajd-is
 |---|---|---|---|---|
 | ★ | Schulzrinne H., Rao A., Lanphier R. (1998). Real Time Streaming Protocol (RTSP). *RFC Editor*, RFC 2326. | 1219 | ✓ pobrane (`Schulzrinne 1998 - Real Time Streaming Protocol (RTSP).pdf`) | specyfikacja RTSP 1.0, przez który kamery IP udostępniają strumień — źródło normatywne do modułu akwizycji |
 | ★ | Ananthanarayanan G., Bahl P., Bodik P. i in. (2017). Real-Time Video Analytics: The Killer App for Edge Computing. *Computer* 50(10), 58-67. | 504 | ✓ pobrane (`Ananthanarayanan 2017 - Real-Time Video Analytics - The Killer App for Edge Computing.pdf`) | analityka wideo na żywo w dużej skali wymaga architektury rozproszonej: kamery – brzeg sieci – chmura — uzasadnienie „rozproszonego systemu” z tematu |
-| ★ | Gallo G., Di Rienzo F., Garzelli F. i in. (2022). A Smart System for Personal Protective Equipment Detection in Industrial Environments Based on Deep Learning at the Edge. *IEEE Access* 10, 110862-110878. | 86 | ✓ pobrane (`Gallo 2022 - A Smart System for Personal Protective Equipment Detection in Industrial Environments Based on Deep Learning at the Edge.pdf`) | system PPE (kask, kamizelka, rękawice) na strumieniu z kamery, liczony na brzegu (Raspberry Pi + Intel NCS2): porównanie 5 sieci pod kątem trafności, opóźnienia i klatek/s — kontrast dla centralnego komputera kolegi |
+| ★ | Gallo G., Di Rienzo F., Garzelli F. i in. (2022). A Smart System for Personal Protective Equipment Detection in Industrial Environments Based on Deep Learning at the Edge. *IEEE Access* 10, 110862-110878. | 86 | ✓ pobrane (`Gallo 2022 - A Smart System for Personal Protective Equipment Detection in Industrial Environments Based on Deep Learning at the Edge.pdf`) | system PPE (kask, kamizelka, rękawice) na strumieniu z kamery, liczony na brzegu (Raspberry Pi + Intel NCS2): porównanie 5 sieci; wybrany YOLOv4-Tiny, bo YOLOv4 jest dokładniejszy o 10,4 pkt mAP@50, ale ma ok. 90% mniejszą przepustowość — kompromis trafność/prędkość; kontrast dla centralnego komputera kolegi |
 |  | Xu R., Razavi S., Zheng R. (2023). Edge Video Analytics: A Survey on Applications, Systems and Enabling Techniques. *IEEE Communications Surveys & Tutorials* 25(4), 2951-2982. | 99 | [IEEE, przez PWr](https://doi.org/10.1109/comst.2023.3323091) · [Scholar](https://scholar.google.com/scholar?q=%22Edge%20Video%20Analytics%3A%20A%20Survey%20on%20Applications%2C%20Systems%20and%20Enabling%20Techniques%22) | przegląd edge video analytics: architektury, frameworki, zbiory danych — gdy trzeba szerzej opisać przetwarzanie strumieni |
 |  | Lema D.G., Usamentiaga R., García D.F. (2023). Low-cost system for real-time verification of personal protective equipment in industrial facilities using edge computing devices. *Journal of Real-Time Image Processing* 20(6). | 16 | [Springer, otwarty](https://doi.org/10.1007/s11554-023-01368-7) · [Scholar](https://scholar.google.com/scholar?q=%22Low-cost%20system%20for%20real-time%20verification%20of%20personal%20protective%20equipment%20in%20industrial%20facilities%20using%20edge%20computing%20devices%22) | tani system PPE na urządzeniach brzegowych z detekcją i śledzeniem; alarm z informacji czasowej (kilka klatek), nie z pojedynczej klatki — wzorzec dla klasyfikacji naruszeń |
 

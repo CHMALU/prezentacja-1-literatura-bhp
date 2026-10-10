@@ -48,18 +48,22 @@ ENTRIES = [
      "DeepSORT: śledzenie osób między klatkami — żeby naruszenie liczyć raz na osobę, a nie w każdej klatce"),
     ("ppe", "10.1016/j.autcon.2017.09.018", 1,
      "klasyk dziedziny: Faster R-CNN wykrywa brak kasku na nagraniach z kamer monitoringu z dużej odległości "
-     "(ponad 100 tys. klatek z 25 budów)"),
+     "(ponad 100 tys. klatek z 25 budów): precision 95,7%, recall 94,9%, ok. 0,2 s na klatkę; tylko kask; "
+     "integrację z systemem monitoringu w czasie rzeczywistym autorzy zostawiają na dalsze prace"),
     ("ppe", "10.1016/j.autcon.2020.103085", 1,
-     "**najbliższe tematowi:** kask + kamizelka w czasie rzeczywistym (YOLOv3), trzy warianty: detekcja elementów "
-     "+ klasyfikator albo od razu klasa pracownika (bez kasku i kamizelki / tylko kask / tylko kamizelka / oba); "
-     "mAP 72–86% wg repozytorium autorów, zbiór Pictor-v3 i kod otwarte"),
+     "**najbliższe tematowi:** kask + kamizelka w czasie rzeczywistym (YOLOv3), trzy warianty klasyfikacji "
+     "pracownika (bez kasku i kamizelki / tylko kask / tylko kamizelka / oba); najlepszy (od razu klasa pracownika) "
+     "72,3% mAP przy 11 FPS na laptopie, najszybszy (detekcja elementów + klasyfikator) 63,1% przy 13 FPS; "
+     "zbiór Pictor-v3 (ok. 1500 zdjęć z crowdsourcingu i internetu) i modele otwarte"),
     ("ppe", "10.3390/s21103478", 1,
-     "osiem wariantów YOLO (v3–v5) na otwartym zbiorze CHV (kaski w 4 kolorach, osoba, kamizelka): YOLOv5x "
-     "mAP 86,55%, YOLOv5s 52 FPS na GPU — gotowy zbiór na start i punkt odniesienia dla wyników"),
+     "osiem wariantów YOLO (v3–v5) na otwartym zbiorze CHV (1330 zdjęć z budów; kaski w 4 kolorach, osoba, "
+     "kamizelka): YOLOv5x mAP 86,55%, YOLOv5s 52 FPS na GPU; typowe błędy: zielona koszulka brana za kamizelkę, "
+     "małe postacie z daleka — gotowy zbiór na start i punkt odniesienia dla wyników"),
     ("ppe", "10.1109/access.2024.3451117", 1,
-     "system PPE na nagraniach z kamer monitoringu, od zbierania danych po wdrożenie (YOLOv7, CenterNet, ViT); "
-     "mAP spada z 92,4% do 66,7% na nagraniu z innego miejsca i pod innym kątem — argument za uczeniem "
-     "na własnych nagraniach z placu"),
+     "**najbliższy architekturze:** system PPE na nagraniach z kamer CCTV (386 tys. klatek), wielowątkowy silnik "
+     "na GPU (TensorRT) obsługuje kilka źródeł przy 30 FPS, wyniki na dashboardzie; YOLOv7 lepszy od CenterNet "
+     "i transformera; mAP 92,4% na kamerze znanej z treningu, ale 66,7% na innej kamerze w innym środowisku — "
+     "argument za uczeniem na własnych nagraniach z placu"),
     ("ppe", "10.1016/j.autcon.2019.102894", 0,
      "otwarty zbiór GDUT-HWD (3174 zdjęcia, kaski z kolorami), SSD z mechanizmem uwagi, mAP 83,89%"),
     ("ppe", "10.1016/j.autcon.2021.103828", 0,
@@ -78,7 +82,8 @@ ENTRIES = [
      "specyfikacja RTSP 1.0, przez który kamery IP udostępniają strumień — źródło normatywne do modułu akwizycji"),
     ("sys", "10.1109/access.2022.3215148", 1,
      "system PPE (kask, kamizelka, rękawice) na strumieniu z kamery, liczony na brzegu (Raspberry Pi + Intel NCS2): "
-     "porównanie 5 sieci pod kątem trafności, opóźnienia i klatek/s — kontrast dla centralnego komputera kolegi"),
+     "porównanie 5 sieci; wybrany YOLOv4-Tiny, bo YOLOv4 jest dokładniejszy o 10,4 pkt mAP@50, ale ma ok. 90% "
+     "mniejszą przepustowość — kompromis trafność/prędkość; kontrast dla centralnego komputera kolegi"),
     ("sys", "10.1007/s11554-023-01368-7", 0,
      "tani system PPE na urządzeniach brzegowych z detekcją i śledzeniem; alarm z informacji czasowej (kilka klatek), "
      "nie z pojedynczej klatki — wzorzec dla klasyfikacji naruszeń"),
@@ -121,8 +126,18 @@ BOOKS = [
      ["name:86df7dcfd896fcaf2674f757a2463eba", "name:hiddentechnicaldebtinmachinelearningsystems",
       "hiddentechnicaldebtinmachinelearningsystems"]),
 ]
+BOOKS.append(
+    ("mot", 1, None,
+     "Główny Urząd Statystyczny (2025). *Wypadki przy pracy w 2024 r.* GUS, Warszawa (publikacja z 27.11.2025).",
+     "budownictwo w 2024 r.: 3442 z 67 000 poszkodowanych (5%), ale 59 z 250 ofiar śmiertelnych (24%) — tabl. 2; "
+     "robotnicy budowlani to najczęstsza grupa wśród ofiar śmiertelnych (19,6%); „nieużywanie lub używanie "
+     "w nieprawidłowy sposób sprzętu ochronnego” zgłoszono jako przyczynę 2311 razy — tabl. 19",
+     "[GUS, otwarty](https://stat.gov.pl/obszary-tematyczne/rynek-pracy/warunki-pracy-wypadki-przy-pracy/"
+     "wypadki-przy-pracy-w-2024-r-,4,18.html) (PDF + tablice XLSX)",
+     ["name:wypadkiprzypracy2024", "name:wypadkiprzypracyw2024", "wypadkiprzypracyw2024r"]))
 BOOK_TODO: dict[str, str] = {}
 GROUPS = [
+    ("mot", "Motywacja: wypadki przy pracy w budownictwie", "slajd „Motywacja”"),
     ("ppe", "Detekcja kasków i kamizelek (PPE) — najbliższe tematowi", "wątek 2"),
     ("sys", "Strumienie wideo z kamer i systemy czasu rzeczywistego", "wątek 1"),
     ("det", "Detekcja obiektów: podstawy (YOLO i inne)", "wątek 2"),
@@ -140,9 +155,9 @@ TOP = """## Od czego zacząć (na 15 minut wystarczą te 4)
 1. **Nath i in. (2020)**: robi prawie to samo zadanie (kask + kamizelka, YOLO, czas rzeczywisty), więc to
    główny punkt odniesienia. Warianty „detekcja elementów + reguła” i „klasa pracownika od razu” to gotowy
    materiał na pytanie z dyskusji „jak klasyfikujesz naruszenie?”.
-2. **Al-Azani i in. (2024)**: system na nagraniach z kamer monitoringu, od danych po wdrożenie. Spadek mAP
-   z 92% do 67% na nagraniu z innego miejsca i pod innym kątem uzasadnia, czemu praca uczy model na
-   nagraniach z własnego placu.
+2. **Al-Azani i in. (2024)**: najbliższy architekturze system (kilka kamer CCTV, silnik na GPU, 30 FPS,
+   dashboard). Spadek mAP z 92% do 67% na innej kamerze w innym środowisku uzasadnia, czemu praca uczy
+   model na nagraniach z własnego placu.
 3. **Gallo i in. (2022)**: system czasu rzeczywistego na strumieniu z kamery (wariant brzegowy). Dobrze
    pokazuje, czym różni się architektura kolegi: kilka kamer RTSP, jeden komputer, kolejka strumieni i GUI.
 4. **Redmon i in. (2016)** albo przegląd **Terven i in. (2023)**: podstawa metody, czyli dlaczego YOLO.
@@ -198,7 +213,7 @@ def fetch() -> None:
                 rec["cites_alt"] = best
         meta[doi] = rec
         print(f"{group:5} {rec['cites']!s:>7} {csl.get('title', '?')[:70]}")
-    bibs.append(SCULLEY_BIB)
+    bibs += [SCULLEY_BIB, GUS_BIB]
     META.write_text(json.dumps(meta, ensure_ascii=False, indent=1), encoding="utf-8")
     BIB.write_text("\n\n".join(bibs) + "\n", encoding="utf-8")
     print(f"zapisano {META.name} ({len(meta)}) i {BIB.name} ({len(bibs)})")
@@ -220,6 +235,17 @@ SCULLEY_BIB = """@inproceedings{Sculley_2015,
  url = {https://proceedings.neurips.cc/paper_files/paper/2015/file/86df7dcfd896fcaf2674f757a2463eba-Paper.pdf},
  volume = {28},
  year = {2015}
+}"""
+
+
+GUS_BIB = """@book{GUS_2025,
+ author = {{Główny Urząd Statystyczny}},
+ title = {Wypadki przy pracy w 2024 r.},
+ publisher = {GUS},
+ address = {Warszawa},
+ year = {2025},
+ note = {Data publikacji: 27.11.2025},
+ url = {https://stat.gov.pl/obszary-tematyczne/rynek-pracy/warunki-pracy-wypadki-przy-pracy/wypadki-przy-pracy-w-2024-r-,4,18.html}
 }"""
 
 
@@ -247,7 +273,8 @@ def is_pdf(path: Path) -> bool:
 
 def safe_name(fam: str, yr, title: str) -> str:
     """Nazwa pliku z prawdziwego tytułu: „Nazwisko rok - Tytuł.pdf” (bez znaków niedozwolonych w nazwach)."""
-    fam = unicodedata.normalize("NFKD", fam.title() if fam.isupper() else fam).encode("ascii", "ignore").decode()
+    fam = fam.title() if fam.isupper() and len(fam) > 4 else fam
+    fam = unicodedata.normalize("NFKD", fam.replace("ł", "l").replace("Ł", "L")).encode("ascii", "ignore").decode()
     title = " ".join(html.unescape(re.sub(r"</?i>", "", title)).split())
     title = re.sub(r'[<>"\\|?*]', "", title.replace(": ", " - ").replace(":", " -").replace("/", "-"))
     return f"{fam} {yr} - {title}"[:180].rstrip(" .-") + ".pdf"
@@ -258,9 +285,19 @@ def file_name(rec: dict) -> str:
     return safe_name((c.get("author") or [{}])[0].get("family", "X"), year(c), c.get("title", ""))
 
 
-def book_file_name(ref: str) -> str:
+def split_ref(ref: str) -> tuple[str, str, str, str]:
+    """Opis pracy bez DOI -> (autorzy, rok, tytuł, nazwisko do nazwy pliku); autor instytucjonalny -> skrót (GUS)."""
     who, _, rest = ref.partition("). ")
-    return safe_name(who.split()[0].rstrip(","), who.rsplit("(", 1)[-1], rest.split(". *")[0])
+    author, yr = who.rsplit(" (", 1)
+    title = rest[1:].split("*")[0] if rest.startswith("*") else rest.split(". *")[0]
+    person = "," in author or "." in author
+    fam = author.split()[0].rstrip(",") if person else "".join(w[0] for w in author.split() if w[0].isupper())
+    return author, yr, title, fam
+
+
+def book_file_name(ref: str) -> str:
+    _, yr, title, fam = split_ref(ref)
+    return safe_name(fam, yr, title)
 
 
 def pages(path: Path) -> int:
@@ -429,8 +466,8 @@ def render(meta: dict, found: dict[str, list[str]]) -> None:
                 got = have_text(found.get(ref))
                 todo = BOOK_TODO.get(ref.split()[0].rstrip(","))
                 mark = f"✓ pobrane (`{got}`)" + (f" · **{todo}**" if todo else "") if got else link
-                who, _, rest = ref.partition("). ")
-                brief = f"{who}). *{rest.split('. *')[0]}*"
+                author, yr, title, _ = split_ref(ref)
+                brief = f"{author} ({yr}). *{title}*"
                 items.append((star, cites or 0, ref, f"{cites} (bez DOI, OpenAlex zaniża)" if cites else "—",
                               mark, note, brief))
         items.sort(key=lambda x: (-x[0], -x[1]))
@@ -463,10 +500,10 @@ def render(meta: dict, found: dict[str, list[str]]) -> None:
     stars = sum(e[2] for e in ENTRIES) + sum(b[1] for b in BOOKS)
     header = f"""# Literatura do Prezentacji I — „System automatycznego wykrywania naruszeń BHP w czasie rzeczywistym”
 
-{len(summary)} pozycji, z czego {stars} oznaczonych ★ to rdzeń na slajd „Istniejące rozwiązania” (cel: 8–12
-pozycji). Reszta to zapas na pytania z dyskusji albo na później do pracy. Wszystkie pozycje sprawdzone:
-metadane z rejestru DOI, treść z abstraktu (przy Nath i in. 2020 wyniki z repozytorium autorów, bo
-abstrakt jest tylko u wydawcy). Plik generuje `literatura.py`, więc zmiany wprowadzać w skrypcie.
+{len(summary)} pozycji, z czego {stars} oznaczonych ★ to rdzeń na slajdy (motywacja, istniejące rozwiązania,
+podstawy metod). Reszta to zapas na pytania z dyskusji albo na później do pracy. Wszystkie pozycje sprawdzone:
+metadane z rejestru DOI, treść z abstraktu, a 5 prac z tabeli na slajdzie (Fang 2018, Nath 2020, Wang 2021,
+Gallo 2022, Al-Azani 2024) także w pełnym tekście. Plik generuje `literatura.py`, więc zmiany wprowadzać w skrypcie.
 
 - **Wyszukiwanie (2026-10-10):** OpenAlex (tytuł + abstrakt, sortowanie po cytowaniach), osobno dla czterech
   wątków tematu, plus weryfikacja po tytule klasyków.
