@@ -1,0 +1,5 @@
+# PDF-y z płatnych baz (konto PWr) zostają lokalnie — licencja nie pozwala ich udostępniać
+pdf/
+*.pdf
+*_files/
+__pycache__/
