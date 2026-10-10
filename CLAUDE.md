@@ -90,7 +90,9 @@ pracy ani prezentacji.
   `https://omnis-pwr.primo.exlibrisgroup.com/discovery/search?vid=48OMNIS_TUR:48TUR`.
   **Nie działa:** MIT Press. Pełna lista e-zasobów: biblioteka.pwr.edu.pl/en/e-resources/e-books.
 - **Haczyki:**
-  - IEEE: PDF zapisywać ikoną pobierania w podglądzie, nie Ctrl+S (zapisuje stronę HTML z PDF-em w `_files`).
+  - IEEE: PDF zapisywać ikoną pobierania w podglądzie. **Nie „Drukuj”** — daje tylko 1. stronę (sprawdzone
+    2026-10-10, skrypt teraz takie pliki pomija). Bez ikony: Ctrl+S „strona kompletna”, PDF ląduje w `*_files`
+    i skrypt go wyjmuje.
   - Ebook Central: plik `.acsm` to wypożyczenie z DRM (na Linuksie nie otworzy się); pobierać **pojedyncze
     rozdziały** jako PDF; limit **40% stron książki na 24h**.
   - Gdy brak dostępu: wersja otwarta przez Google Scholar (link [PDF] po prawej), arXiv, SSRN, strona autora.

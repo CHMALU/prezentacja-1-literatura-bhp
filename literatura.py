@@ -118,7 +118,8 @@ BOOKS = [
      "dług techniczny w systemach ML: model to mały fragment systemu, resztę stanowią dane, konfiguracja, "
      "zależności i monitoring — uzasadnienie podejścia inżynierskiego, nie tylko „wytrenuj model”",
      "[NeurIPS, otwarty](https://papers.nips.cc/paper_files/paper/2015/hash/86df7dcfd896fcaf2674f757a2463eba-Abstract.html)",
-     ["name:86df7dcfd896fcaf2674f757a2463eba", "hiddentechnicaldebtinmachinelearningsystems"]),
+     ["name:86df7dcfd896fcaf2674f757a2463eba", "name:hiddentechnicaldebtinmachinelearningsystems",
+      "hiddentechnicaldebtinmachinelearningsystems"]),
 ]
 BOOK_TODO: dict[str, str] = {}
 GROUPS = [
@@ -244,14 +245,30 @@ def is_pdf(path: Path) -> bool:
         return False
 
 
+def safe_name(fam: str, yr, title: str) -> str:
+    """Nazwa pliku z prawdziwego tytułu: „Nazwisko rok - Tytuł.pdf” (bez znaków niedozwolonych w nazwach)."""
+    fam = unicodedata.normalize("NFKD", fam.title() if fam.isupper() else fam).encode("ascii", "ignore").decode()
+    title = " ".join(html.unescape(re.sub(r"</?i>", "", title)).split())
+    title = re.sub(r'[<>"\\|?*]', "", title.replace(": ", " - ").replace(":", " -").replace("/", "-"))
+    return f"{fam} {yr} - {title}"[:180].rstrip(" .-") + ".pdf"
+
+
 def file_name(rec: dict) -> str:
-    """Nazwa nadawana przy automatycznym pobieraniu: Nazwisko_rok_TrzySłowaTytułu.pdf"""
     c = rec["csl"]
-    fam = (c.get("author") or [{}])[0].get("family", "X")
-    fam = re.sub(r"[^A-Za-z0-9]", "", unicodedata.normalize("NFKD", fam.title() if fam.isupper() else fam)
-                 .encode("ascii", "ignore").decode())
-    words = [w for w in re.findall(r"[A-Za-z]+", c.get("title", "")) if len(w) > 3][:3]
-    return f"{fam}_{year(c)}_{''.join(w.capitalize() for w in words)}.pdf"
+    return safe_name((c.get("author") or [{}])[0].get("family", "X"), year(c), c.get("title", ""))
+
+
+def book_file_name(ref: str) -> str:
+    who, _, rest = ref.partition("). ")
+    return safe_name(who.split()[0].rstrip(","), who.rsplit("(", 1)[-1], rest.split(". *")[0])
+
+
+def pages(path: Path) -> int:
+    try:
+        out = subprocess.run(["pdfinfo", str(path)], capture_output=True, timeout=30).stdout.decode("utf-8", "ignore")
+        return int(re.search(r"^Pages:\s+(\d+)", out, re.M).group(1))
+    except (OSError, subprocess.TimeoutExpired, AttributeError):
+        return 0
 
 
 def identify(path: Path, meta: dict, strong_only: bool = False) -> str | None:
@@ -306,6 +323,9 @@ def collect(meta: dict, days: float) -> dict[str, list[str]]:
     for path in candidates:
         if not is_pdf(path) or identify(path, meta, strong_only=True) is None:
             continue
+        if pages(path) <= 1:   # „Drukuj → Zapisz jako PDF” w podglądzie IEEE daje tylko 1. stronę artykułu
+            print(f"pominięty (1 strona — wydruk podglądu, nie artykuł; pobierz ikoną pobierania): {path}")
+            continue
         target = PDF_DIR / path.name
         if target.exists():
             print(f"pominięty (już jest plik o tej nazwie): {path}")
@@ -317,8 +337,15 @@ def collect(meta: dict, days: float) -> dict[str, list[str]]:
         key = identify(path, meta) if is_pdf(path) else None
         if key is None:
             print(f"nierozpoznany plik w pdf/: {path.name}")
-        else:
-            found.setdefault(key, []).append(path.name)
+            continue
+        if pages(path) <= 1:
+            print(f"za krótki (1 strona — wydruk podglądu, nie artykuł): {path.name}")
+            continue
+        nice = file_name(meta[key]) if key in meta else book_file_name(key)
+        if path.name != nice and not (PDF_DIR / nice).exists():   # nazwa = prawdziwy tytuł pracy
+            path = path.rename(PDF_DIR / nice)
+            print(f"nazwa zmieniona na: {nice}")
+        found.setdefault(key, []).append(path.name)
     return found
 
 
@@ -442,8 +469,10 @@ abstrakt jest tylko u wydawcy). Plik generuje `literatura.py`, więc zmiany wpro
   (Elsevier, Springer, Wiley, IEEE, ACM): działa w sieci uczelni albo z domu przez VPN PWr (GlobalProtect,
   portal `vpn.student.pwr.edu.pl`, login z USOS). Gdy coś nie działa, link **Scholar** (wolna kopia zwykle
   po prawej jako [PDF]). Pobierać ręcznie, nie skryptem (masowe pobieranie z płatnych baz łamie licencję).
-- **IEEE Xplore:** PDF zapisywać **ikoną pobierania na pasku podglądu PDF**, nie Ctrl+S (to zapisuje stronę
-  HTML z PDF-em w folderze `_files`).
+- **IEEE Xplore:** PDF zapisywać **ikoną pobierania na pasku podglądu PDF**. **Nie „Drukuj”** — wydruk podglądu
+  ma tylko 1. stronę artykułu (skrypt takie pliki pomija). Gdy ikony nie widać: Ctrl+S → „strona kompletna”;
+  pełny PDF ląduje wtedy w folderze `*_files` w Pobranych, a `python3 literatura.py` sam go stamtąd wyjmuje.
+- PDF-y w `pdf/` dostają nazwy z prawdziwego tytułu: „Nazwisko rok - Tytuł.pdf”.
 - ✓ = plik jest w `pdf/` (lokalnie, poza gitem). `python3 literatura.py` sam przenosi tam pasujące PDF-y
   z Pobranych i odświeża tę listę.
 - BibTeX wszystkich pozycji: `bibliografia.bib`.
