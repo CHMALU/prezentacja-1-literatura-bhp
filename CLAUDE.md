@@ -55,8 +55,10 @@ pracy ani prezentacji.
 - Forma jak w mojej pracy: **jedna lista do klikania** — przy każdej pozycji link „gdzie pobrać” (otwarty /
   przez PWr / Scholar), a po pobraniu PDF-ów oznaczenie ✓ (adaptacja `scripts/literatura.py`, patrz niżej).
   **Nie dawać list fraz wyszukiwania** do samodzielnego szukania — dostarczamy gotową, zweryfikowaną listę.
-- Punkt startu: `kandydaci-wstepni.md` (pierwsze wyszukiwanie z 2026-10-10, niezweryfikowane; brakuje
-  wątków 1 i 4).
+- **Stan 2026-10-10:** gotowe `literatura.md` (22 pozycje, 12 ★, generuje `literatura.py`), `bibliografia.bib`,
+  `slajd-istniejace-rozwiazania.md`. `kandydaci-wstepni.md` jest już tylko historyczny.
+- **Repo:** prywatne `github.com/CHMALU/prezentacja-1-literatura-bhp` (kolegę zaprasza się jako collaboratora).
+  PDF-y są w `.gitignore`, bo z płatnych baz nie wolno ich udostępniać.
 
 ## Jak szukać (sprawdzone 2026-10-07/08 przy mojej pracy)
 
@@ -105,7 +107,8 @@ Przy 8–12 pozycjach wystarczy też ręczna lista w Markdown.
 
 ## Zasady
 
-- Ten folder i jego pliki nie trafiają do repo `inzynierka` ani do bazy wiedzy (poza krótką notatką o zamianie terminów).
+- Ten folder i jego pliki nie trafiają do repo `inzynierka` ani do bazy wiedzy (poza krótką notatką o zamianie terminów
+  w `prywatne/inzynierka/inzynierka.md`); mają własne prywatne repo (wyżej).
 - Język: polski; terminy techniczne po angielsku.
 - Na koniec: krótko podsumować koledze, które 3–4 pozycje są najważniejsze i dlaczego, bo na 15 minut
   więcej i tak się nie zmieści.
