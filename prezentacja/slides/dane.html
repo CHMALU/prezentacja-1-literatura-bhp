@@ -1,0 +1,25 @@
+<section id="dane" data-section="Plan: dane, zadania do wykonania, bibliografia" data-transition="fade" style="background:#F7F5F0;color:#17212B;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px;display:flex;flex-direction:column;gap:48px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:24px;font-weight:600;color:#C2410C;letter-spacing:3px;text-transform:uppercase">Plan prac</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:60px;font-weight:700;line-height:1.15;color:#17212B">Dane i sposób oceny</h2>
+</div>
+<div style="display:flex;gap:32px">
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FFFDF8;border:2px solid #E4DFD3;border-radius:20px;padding:40px">
+<h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:32px;font-weight:700;color:#17212B">Na start</h3>
+<p style="font-size:26px;line-height:1.4;color:#3D4A57">otwarte zbiory: CHV (1330 zdjęć z budów: osoba, kask, kamizelka) i Pictor-v3 (ok. 1500 zdjęć)</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FFFDF8;border:2px solid #E4DFD3;border-radius:20px;padding:40px">
+<h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:32px;font-weight:700;color:#17212B">Docelowo</h3>
+<p style="font-size:26px;line-height:1.4;color:#3D4A57">nagrania z rzeczywistego placu robót, oznaczone: osoba, kask, kamizelka; zgodnie z RODO i przepisami o monitoringu w pracy</p>
+</div>
+<div style="flex:1;display:flex;flex-direction:column;gap:14px;background:#FFFDF8;border:2px solid #E4DFD3;border-radius:20px;padding:40px">
+<h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:32px;font-weight:700;color:#17212B">Ocena</h3>
+<p style="font-size:26px;line-height:1.4;color:#3D4A57">mAP oraz precision i recall wykrywania naruszeń; klatki/s przy 4 strumieniach; test na nagraniach spoza zbioru uczącego</p>
+</div>
+</div>
+<div style="display:flex;gap:28px;align-items:center;background:#FBEFE6;border-left:8px solid #C2410C;border-radius:12px;padding:32px 40px">
+<x-icon name="Warning" style="color:#C2410C;width:48px;height:48px"></x-icon>
+<p style="flex:1;font-size:28px;line-height:1.4;color:#17212B"><b>Dlaczego własne dane:</b> u Al-Azani i in. (2024) mAP spada z 92,4% do 66,7% na kamerze w innym środowisku niż dane uczące.</p>
+</div>
+<aside>Czas: ok. 1,5 min. Na start mam gotowe, otwarte zbiory zdjęć z budów: CHV od Wanga i in. (1330 zdjęć) i Pictor-v3 od Natha i in. (około 1500 zdjęć). Docelowo uczę i sprawdzam model na nagraniach z rzeczywistego placu robót, oznaczonych w tych samych klasach. Nagrywanie pracowników podlega RODO i przepisom o monitoringu w miejscu pracy (art. 22² Kodeksu pracy), więc pracownicy muszą być poinformowani, a nagrania zabezpieczone. Ocena: mAP, precision i recall dla naruszeń, liczba klatek na sekundę przy czterech strumieniach naraz oraz test na nagraniach, których model nie widział przy uczeniu. Argument za własnymi danymi daje Al-Azani: 92,4% mAP na znanej kamerze i 66,7% na innej. Dopasuj ten slajd do tego, skąd naprawdę będą nagrania.</aside>
+</section>

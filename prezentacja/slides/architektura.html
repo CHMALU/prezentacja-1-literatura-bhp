@@ -1,0 +1,47 @@
+<section id="architektura" data-section="Koncepcja systemu i podstawy metod" data-transition="fade" style="background:#F7F5F0;color:#17212B;font-family:'IBM Plex Sans', Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:12px">
+<p style="font-size:24px;font-weight:600;color:#C2410C;letter-spacing:3px;text-transform:uppercase">Koncepcja</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:60px;font-weight:700;line-height:1.15;color:#17212B">Koncepcja systemu</h2>
+</div>
+<!-- K1 0,0,240,80  K2 0,124,240,80  K3 0,248,240,80  K4 0,372,240,80  A 376,86,283,280  D 711,86,283,280  C 1046,86,283,280  G 1381,86,283,280  U 376,520,1288,136  bus x=308 -->
+<div style="position:relative;width:1664px;height:656px">
+<p style="position:absolute;left:0;top:0;width:240px;height:80px;padding:0 20px;font-size:26px;font-weight:600;line-height:80px;color:#F7F5F0;background:#17212B;border-radius:14px;text-align:center">Kamera IP 1</p>
+<p style="position:absolute;left:0;top:124px;width:240px;height:80px;padding:0 20px;font-size:26px;font-weight:600;line-height:80px;color:#F7F5F0;background:#17212B;border-radius:14px;text-align:center">Kamera IP 2</p>
+<p style="position:absolute;left:0;top:248px;width:240px;height:80px;padding:0 20px;font-size:26px;font-weight:600;line-height:80px;color:#F7F5F0;background:#17212B;border-radius:14px;text-align:center">Kamera IP 3</p>
+<p style="position:absolute;left:0;top:372px;width:240px;height:80px;padding:0 20px;font-size:26px;font-weight:600;line-height:80px;color:#F7F5F0;background:#17212B;border-radius:14px;text-align:center">Kamera IP 4</p>
+<div style="position:absolute;left:376px;top:86px;width:283px;height:280px;display:flex;flex-direction:column;gap:12px;padding:24px;background:#FFFDF8;border:2px solid #17212B;border-radius:16px">
+<h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:28px;font-weight:700;color:#17212B">1. Akwizycja</h3>
+<p style="font-size:24px;line-height:1.4;color:#3D4A57">wątek na każdą kamerę, kolejka klatek, dekodowanie strumieni</p>
+</div>
+<div style="position:absolute;left:711px;top:86px;width:283px;height:280px;display:flex;flex-direction:column;gap:12px;padding:24px;background:#FFFDF8;border:2px solid #17212B;border-radius:16px">
+<h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:28px;font-weight:700;color:#17212B">2. Detekcja</h3>
+<p style="font-size:24px;line-height:1.4;color:#3D4A57">model YOLO na GPU: osoby, kaski, kamizelki</p>
+</div>
+<div style="position:absolute;left:1046px;top:86px;width:283px;height:280px;display:flex;flex-direction:column;gap:12px;padding:24px;background:#FFFDF8;border:2px solid #17212B;border-radius:16px">
+<h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:28px;font-weight:700;color:#17212B">3. Klasyfikacja</h3>
+<p style="font-size:24px;line-height:1.4;color:#3D4A57">przypisanie kasku i kamizelki do osoby, potwierdzenie w kilku klatkach</p>
+</div>
+<div style="position:absolute;left:1381px;top:86px;width:283px;height:280px;display:flex;flex-direction:column;gap:12px;padding:24px;background:#FFFDF8;border:2px solid #17212B;border-radius:16px">
+<h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:28px;font-weight:700;color:#17212B">4. GUI</h3>
+<p style="font-size:24px;line-height:1.4;color:#3D4A57">podgląd 4 kamer, alerty, rejestr naruszeń</p>
+</div>
+<div style="position:absolute;left:376px;top:520px;width:1288px;height:136px;display:flex;flex-direction:column;gap:8px;padding:24px 32px;background:#FBEFE6;border:2px dashed #C2410C;border-radius:16px">
+<p style="font-size:26px;font-weight:600;line-height:1.3;color:#17212B">Uczenie modelu (poza czasem rzeczywistym)</p>
+<p style="font-size:24px;line-height:1.4;color:#3D4A57">nagrania z placu → oznaczanie osób, kasków i kamizelek → trening i walidacja → nowa wersja modelu w module 2</p>
+</div>
+<x-connector x1="240" y1="40" x2="308" y2="40" head="none" style="color:#17212B;border-width:3px"></x-connector>
+<x-connector x1="240" y1="164" x2="308" y2="164" head="none" style="color:#17212B;border-width:3px"></x-connector>
+<x-connector x1="240" y1="288" x2="308" y2="288" head="none" style="color:#17212B;border-width:3px"></x-connector>
+<x-connector x1="240" y1="412" x2="308" y2="412" head="none" style="color:#17212B;border-width:3px"></x-connector>
+<x-connector x1="308" y1="40" x2="308" y2="412" head="none" style="color:#17212B;border-width:3px"></x-connector>
+<x-connector x1="308" y1="226" x2="376" y2="226" style="color:#17212B;border-width:3px"></x-connector>
+<x-connector x1="659" y1="226" x2="711" y2="226" style="color:#17212B;border-width:3px"></x-connector>
+<x-connector x1="994" y1="226" x2="1046" y2="226" style="color:#17212B;border-width:3px"></x-connector>
+<x-connector x1="1329" y1="226" x2="1381" y2="226" style="color:#17212B;border-width:3px"></x-connector>
+<x-connector x1="852" y1="520" x2="852" y2="366" style="color:#C2410C;border-width:3px;border-style:dashed"></x-connector>
+<p style="position:absolute;left:252px;top:440px;width:110px;font-size:24px;font-weight:600;color:#17212B">RTSP</p>
+<p style="position:absolute;left:868px;top:420px;width:160px;font-size:24px;color:#C2410C">model</p>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1664px;font-size:24px;color:#5B6672">Koncepcja wstępna: wybór wersji YOLO i sprzętu to część zadań badawczych.</p>
+<aside>Czas: ok. 2 min. Opowiedz drogę jednej klatki obrazu od lewej do prawej. Cztery kamery IP wysyłają obraz protokołem RTSP. Moduł akwizycji ma osobny wątek dla każdej kamery i wrzuca klatki do kolejki, żeby żadna kamera nie blokowała innych. Detekcja to model YOLO na karcie graficznej, który znajduje osoby, kaski i kamizelki. Klasyfikacja przypisuje kask i kamizelkę do konkretnej osoby i zgłasza naruszenie dopiero wtedy, gdy powtarza się w kilku kolejnych klatkach, żeby pojedynczy błąd modelu nie wywoływał alarmu. GUI pokazuje podgląd czterech kamer, alerty i rejestr naruszeń. Na dole pętla uczenia: nagrania z placu oznaczam, trenuję i sprawdzam model, a nową wersję wdrażam do modułu detekcji. To jest ten pełny proces inżynierii danych z tematu. Uzupełnij lub popraw szczegóły, jeśli planujesz inaczej.</aside>
+</section>

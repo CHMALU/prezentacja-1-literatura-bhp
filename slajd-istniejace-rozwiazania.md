@@ -1,47 +1,30 @@
-# Szkic slajdów „Istniejące rozwiązania” (Prezentacja I)
+# Slajd „Istniejące rozwiązania” — treść sprawdzona w pełnych tekstach
 
-Treść na 1–2 slajdy, do przeniesienia do własnej prezentacji i przeredagowania. Liczby pochodzą z abstraktów
-(przy Nath i in. 2020 z repozytorium autorów; opis zbioru testowego II u Al-Azani i in. z patentu tych samych
-autorów, US 12243317 B1). Kolumna „czego brakuje” opisuje to, czego praca nie obejmuje
-**według abstraktu**, więc przed wystąpieniem warto rzucić okiem na wnioski i ograniczenia w pełnym tekście
-4–5 prac z tabeli. Pełne opisy i linki: `literatura.md`.
+To jest treść slajdów 5 i 6 gotowej prezentacji (link i plan w `plan-wystapienia.md`), tu w wersji tekstowej
+do kopiowania. Wszystkie liczby sprawdzone w pełnych tekstach prac 2026-10-10.
 
-## Slajd 1: Wykrywanie kasków i kamizelek: stan wiedzy
+## Slajd 5: Istniejące rozwiązania
 
-| Praca | Podejście | Wynik | Czego brakuje względem tematu |
+| Praca | Podejście | Wynik | Ograniczenie |
 |---|---|---|---|
-| Fang i in. (2018), *Autom. Constr.* | Faster R-CNN na nagraniach z kamer monitoringu budowy | ponad 100 tys. klatek z 25 budów | tylko kask, bez kamizelki |
-| Nath i in. (2020), *Autom. Constr.* | YOLOv3, kask + kamizelka; 3 warianty klasyfikacji pracownika | mAP 72–86% | model i zbiór zdjęć (Pictor-v3), nie system wielokamerowy |
-| Wang i in. (2021), *Sensors* | 8 wariantów YOLOv3–v5, otwarty zbiór CHV | mAP 86,55% (v5x), 52 FPS (v5s) | ocena modelu na 1330 zdjęciach, nie działającego systemu |
-| Gallo i in. (2022), *IEEE Access* | system na brzegu: Raspberry Pi + NCS2 przy każdej kamerze | porównanie 5 CNN: trafność, opóźnienie, klatki/s | jedno słabe urządzenie na kamerę |
-| Al-Azani i in. (2024), *IEEE Access* | nagrania z monitoringu (386 tys. klatek), YOLOv7 vs CenterNet vs ViT | mAP 92,4% → **66,7% w innym miejscu i pod innym kątem kamery** | model traci w nowym otoczeniu, więc potrzebne dane z docelowego placu |
+| Fang i in. (2018), *Autom. Constr.* 85 | Faster R-CNN na nagraniach z kamer monitoringu 25 budów | precision 95,7%, recall 94,9% | tylko kask; ok. 0,2 s na klatkę |
+| Nath i in. (2020), *Autom. Constr.* 112 | YOLOv3, kask + kamizelka, od razu klasa pracownika | 72,3% mAP, 11 klatek/s na laptopie | uczony na zdjęciach z internetu i crowdsourcingu |
+| Wang i in. (2021), *Sensors* 21(10) | 8 wariantów YOLOv3–v5, otwarty zbiór CHV | 86,55% mAP (v5x); 52 klatki/s (v5s, GPU) | ocena modelu na 1330 zdjęciach, bez systemu |
+| Gallo i in. (2022), *IEEE Access* 10 | system brzegowy: Raspberry Pi + Intel NCS2 przy kamerze | YOLOv4-Tiny najszybszy, o 10,4 pkt mAP słabszy od YOLOv4 | słaby sprzęt przy każdej kamerze |
+| Al-Azani i in. (2024), *IEEE Access* 12 | kilka kamer CCTV, YOLOv7 na GPU, 30 klatek/s, dashboard | 92,4% mAP, ale 66,7% na innej kamerze | spadek trafności w nowym środowisku |
 
-**Luka, którą wypełnia praca:** jeden system, który zbiera strumienie RTSP z 4 kamer, kolejkuje je
-i przetwarza na jednym komputerze, wykrywa osoby i klasyfikuje naruszenia (brak kasku, brak kamizelki),
-pokazuje je w GUI, a model uczy i sprawdza na nagraniach z rzeczywistego placu robót. Prace z literatury
-skupiają się zwykle na samym modelu (Nath, Wang) albo na jednej kamerze z urządzeniem brzegowym (Gallo).
-Al-Azani i in. pokazują, że model przeniesiony w nowe miejsce traci ok. 25 pkt proc. mAP, co uzasadnia
-uczenie na własnych danych.
+Pod tabelą: wyniki według autorów, na różnych zbiorach danych, więc liczby nie są wprost porównywalne.
 
-## Slajd 2 (opcjonalny): Na czym opiera się praca
+Skąd liczby: Fang — rozdz. 6 (wnioski) i tab. 3; Nath — abstrakt i tab. 3 (wariant 2; wariant 1: 63,1% przy
+13 klatkach/s); Wang — wnioski; Gallo — rozdz. VI–VII; Al-Azani — abstrakt, rozdz. I i VI (zbiór testowy II
+„z innej kamery w innym środowisku pracy, poza rozkładem danych uczących”).
 
-- **Detekcja obiektów:** YOLO, detektor jednoetapowy działający w czasie rzeczywistym (Redmon i in., 2016);
-  przegląd wersji v1–v8 do wyboru modelu (Terven i in., 2023).
-- **Akwizycja strumieni:** protokół RTSP, którym kamery IP udostępniają obraz (RFC 2326); analityka wideo na
-  żywo wymaga architektury rozproszonej (Ananthanarayanan i in., 2017).
-- **Computer vision w BHP na budowie:** przegląd zastosowań i barier wdrożenia (Fang W. i in., 2020).
-- **Aspekt inżynierski:** w systemie z ML model to mały fragment całości, reszta to dane, konfiguracja
-  i monitoring (Sculley i in., 2015); proces MLOps: wersjonowanie danych i modeli, wdrożenie, monitoring
-  (Kreuzberger i in., 2023).
+## Slajd 6: Luka, którą wypełnia praca
 
-## Na pytania z dyskusji (bez slajdu)
+Kompletny system na placu budowy, od kamer do powiadomienia, uczony i sprawdzany na nagraniach z tego placu.
 
-- *„Jak klasyfikujesz naruszenie, skoro detektor widzi kask, a nie pracownika bez kasku?”* — Nath i in. (2020)
-  porównują oba warianty: detekcja elementów + reguła przypisania albo od razu klasa pracownika.
-  Xiong i Tang (2021) przypisują PPE do części ciała przez pose estimation.
-- *„Jedna klatka bez kasku to już naruszenie?”* — Lema i in. (2023) generują alarm z kilku kolejnych klatek;
-  śledzenie osób (DeepSORT, Wojke i in., 2017) pozwala liczyć naruszenie raz na osobę.
-- *„Czemu nie wziąć gotowego zbioru?”* — gotowe zbiory istnieją (CHV, Pictor-v3, GDUT-HWD, SH17) i nadają się
-  na start, ale Al-Azani i in. (2024) pokazują spadek trafności w nowym miejscu.
-- *„Dlaczego jeden komputer, a nie przetwarzanie przy kamerze?”* — Gallo i in. (2022) opisują wariant brzegowy;
-  przy 4 kamerach jeden komputer z GPU jest prostszy we wdrożeniu (to już argument kolegi, nie z literatury).
+| W literaturze | W tej pracy |
+|---|---|
+| model i zbiór danych oceniany na zdjęciach (Nath 2020, Wang 2021) | działający system: 4 kamery RTSP, aplikacja i GUI |
+| osobne urządzenie brzegowe przy każdej kamerze (Gallo 2022) | jeden komputer obsługuje kolejkę 4 strumieni |
+| model z innego miejsca traci ok. 25 pkt mAP (Al-Azani 2024) | uczenie i walidacja na nagraniach z docelowego placu |

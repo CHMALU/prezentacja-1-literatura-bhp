@@ -1,9 +1,11 @@
 # Pomoc koledze: literatura do Prezentacji I (seminarium dyplomowe)
 
 Ten folder jest osobny od mojej pracy (`~/Projects/prywatne/inzynierka`). Pomagamy **koledze**, który
-zamienił się ze mną terminem Prezentacji I. To **jego temat pracy**, nie mój. Zakres: **tylko literatura
-do jego Prezentacji I**, ewentualnie szkic slajdu o istniejących rozwiązaniach. Nie piszemy za niego
-pracy ani prezentacji.
+zamienił się ze mną terminem Prezentacji I. To **jego temat pracy**, nie mój. Zakres pierwotnie: tylko
+literatura. **Zmiana 2026-10-10 (decyzja użytkownika):** pomagamy maksymalnie, w zamian za zamianę terminów,
+więc powstała też gotowa prezentacja (claude.ai, link w README) i plan wystąpienia. Kolega ma ją przejrzeć
+i dopasować cel, zakres, koncepcję i zadania do swojego planu, bo z tego będą go pytać. Pracy dyplomowej
+za niego nie piszemy.
 
 ## Termin i wymagania
 
@@ -55,8 +57,11 @@ pracy ani prezentacji.
 - Forma jak w mojej pracy: **jedna lista do klikania** — przy każdej pozycji link „gdzie pobrać” (otwarty /
   przez PWr / Scholar), a po pobraniu PDF-ów oznaczenie ✓ (adaptacja `scripts/literatura.py`, patrz niżej).
   **Nie dawać list fraz wyszukiwania** do samodzielnego szukania — dostarczamy gotową, zweryfikowaną listę.
-- **Stan 2026-10-10:** gotowe `literatura.md` (22 pozycje, 12 ★, generuje `literatura.py`), `bibliografia.bib`,
-  `slajd-istniejace-rozwiazania.md`. `kandydaci-wstepni.md` jest już tylko historyczny.
+- **Stan 2026-10-10:** gotowe `literatura.md` (23 pozycje, 13 ★, generuje `literatura.py`; rdzeń pobrany do `pdf/`),
+  `bibliografia.bib`, `slajd-istniejace-rozwiazania.md` (liczby sprawdzone w pełnych tekstach), prezentacja
+  (12 slajdów, artifact claude.ai `7fezmZZugbnat7s5USqZS8`, źródło w `prezentacja/`) i `plan-wystapienia.md`
+  (przebieg + ściąga na pytania). Placeholdery do uzupełnienia przez kolegę: imię i nazwisko, promotor, e-mail,
+  skąd nagrania z placu. `kandydaci-wstepni.md` jest już tylko historyczny.
 - **Repo:** prywatne `github.com/CHMALU/prezentacja-1-literatura-bhp` (kolegę zaprasza się jako collaboratora).
   PDF-y są w `.gitignore`, bo z płatnych baz nie wolno ich udostępniać.
 

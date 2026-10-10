@@ -1,0 +1,17 @@
+{
+  "v": 4,
+  "createdOnFiles": {"v": 1, "at": "2026-10-10T11:40:00Z"},
+  "lists": "css",
+  "title": "Prezentacja I — wykrywanie naruszeń BHP",
+  "order": ["cover", "motywacja", "cel", "zakres", "tlo", "luka", "architektura", "metody", "dane", "zadania", "bibliografia", "koniec"],
+  "sections": {
+    "s1": {"description": "Temat: motywacja, cel i zakres pracy", "start": "cover"},
+    "s2": {"description": "Tło: istniejące rozwiązania i luka, którą wypełnia praca", "start": "tlo"},
+    "s3": {"description": "Koncepcja systemu i podstawy metod", "start": "architektura"},
+    "s4": {"description": "Plan: dane, zadania do wykonania, bibliografia", "start": "dane"}
+  },
+  "faces": {
+    "space-grotesk": {"family": "Space Grotesk", "href": "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400..700&display=swap"},
+    "ibm-plex-sans": {"family": "IBM Plex Sans", "href": "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap"}
+  }
+}
